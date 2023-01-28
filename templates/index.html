@@ -9,6 +9,25 @@
 </head>
 
 <body>
-    <h1>Hello, Flask!</h1>
+    <div class="container mx-auto">
+        <div class="flex flex-col items-center justify-center h-screen">
+            <h1 class="text-5xl mb-6">Welcome to Rinse</h1>
+            <h2 class="text-lg my-2">Use the form below to upload and image and remove the background</h2>
+
+            <form action="" class="my-6">
+                <label for="formFile" class="form-label inline-block mb-2 text-gray-700">Default file input example</label>
+                <input class="form-control
+                block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile">
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
