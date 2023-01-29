@@ -21,10 +21,21 @@
 
             <div class="flex justify-center">
                 <div class="mb-3 w-96">
-                    <form action="" class="my-6">
-                        <label class="text-sm font-medium text-gray-900 block mb-2" for="file-uplod">Upload file</label>
-                        <input class="block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded-lg" aria-describedby="iamge-help" id="file-upload" type="file">
-                        <div class="mt-1 text-sm text-gray-500" id="image-help"></div>
+                    <form action="{{ url_for('process_file') }}" method="post" class="my-6" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <label class="text-sm font-medium text-gray-900 block mb-2 sr-only" for="file">Upload file</label>
+                        <input class="block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded-lg" aria-describedby="image-help" id="file" type="file" name="file">
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            <div class="errors">
+                                {% for message in messages%}
+                                <p class="my-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ message }}</span></p>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        {% endwith %}
+                        <div class="mt-1 text-sm text-gray-500" id="image-help">PNG, JPG or JPEG only.</div>
+                        <input type="submit" class="block mt-6 mx-auto cursor-pointer text-white bg-gray-900 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-8 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800" value="Process">
                     </form>
                 </div>
             </div>
