@@ -21,7 +21,7 @@
 
             <div class="flex justify-center">
                 <div class="mb-3 w-96">
-                    <form action="{{ url_for('process_file') }}" method="post" class="my-6" enctype="multipart/form-data">
+                    <form action="{{ url_for('index_post') }}" method="post" class="my-6" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <label class="text-sm font-medium text-gray-900 block mb-2 sr-only" for="file">Upload file</label>
                         <input class="block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded-lg" aria-describedby="image-help" id="file" type="file" name="file">
