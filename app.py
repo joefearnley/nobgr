@@ -1,11 +1,12 @@
 import os
 import time
-from flask import Flask, flash, redirect, url_for, request, render_template, send_from_directory
+from flask import Flask, flash, redirect, request, render_template, send_file
 from werkzeug.utils import secure_filename
 from flask_wtf.csrf import CSRFProtect
 from rembg import remove
 
 UPLOAD_FOLDER = './static/uploads/'
+UPLOAD_FOLDER_RINSED = './static/uploads/rinsed/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 SECRET_KEY = os.urandom(32)
 
@@ -13,8 +14,8 @@ csrf = CSRFProtect()
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER_RINSED'] = UPLOAD_FOLDER_RINSED
 app.config['SECRET_KEY'] = SECRET_KEY
-
 
 csrf.init_app(app)
 
@@ -44,14 +45,11 @@ def index_post():
         filename = secure_filename(file.filename)
         filename = str(time.time()).replace(".", "") + '_' + filename
 
-        # save the file
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'] + '/rinsed/', filename))
+        input_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(input_path)
 
-        input_path = filename
         output_filename = 'rinsed_' + filename
-        output_path = os.path.join(app.config['UPLOAD_FOLDER'] + 'rinsed/', output_filename)
-
-        print(output_path)
+        output_path = os.path.join(app.config['UPLOAD_FOLDER_RINSED'], output_filename)
 
         with open(input_path, 'rb') as i:
             with open(output_path, 'wb') as o:
@@ -59,10 +57,7 @@ def index_post():
                 output = remove(input)
                 o.write(output)
 
-                return send_from_directory(app.config["UPLOAD_FOLDER"], output_path)
+                return send_file(output_path, as_attachment=True)
 
     flash('No file provided.')
     return redirect(request.url)
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
