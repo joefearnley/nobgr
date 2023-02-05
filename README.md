@@ -4,15 +4,19 @@ Rinse is a web interface for [rembg](https://github.com/danielgatis/rembg) built
 ## Installation
 - Clone this repository
 - Create a virtual invironment
+
 `python3 -m venv /path/to/new/virtual/environment`
 
 - Activate the virtual environtment
+
 `source /path/to/new/virtual/environment/bin/activate`
 
 - Install the requirements
+
 `pip install -r requirements.txt`
 
 - Run the flask app
+
 `./venv/rinse/bin/flask --app app --debug run`
 
 ## File clean up
