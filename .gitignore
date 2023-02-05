@@ -58,5 +58,3 @@ env/
 venv/
 
 node_modules
-
-static/uploads
