@@ -57,5 +57,6 @@ db.sqlite3-journal
 env/
 venv/
 
-
 node_modules
+
+static/uploads
