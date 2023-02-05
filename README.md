@@ -17,7 +17,7 @@ Rinse is a web interface for [rembg](https://github.com/danielgatis/rembg) built
 
 - Run the flask app
 
-`./venv/rinse/bin/flask --app app --debug run`
+`/path/to/new/virtual/environment/bin/flask --app app --debug run`
 
 ## File clean up
 The way this works is the uploaded file is written to the filesystem, converted, and then that converted file is also written to the filesystem. In my deployment of this app, I have a cron job that runs every hour to delete all uploaded and converted files.
